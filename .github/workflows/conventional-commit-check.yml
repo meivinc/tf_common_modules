@@ -1,0 +1,18 @@
+name: Conventional Commit Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-commit-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Verify commit messages follow Conventional Commits
+        uses: amitsingh-007/commitlint-action@v4
+        with:
+          configFile: .commitlintrc.json

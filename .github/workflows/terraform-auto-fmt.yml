@@ -1,0 +1,39 @@
+name: Terraform Auto Format
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+permissions:
+  contents: write  # 👈 Required for pushing changes
+
+jobs:
+  terraform-fmt:
+    name: Auto-format Terraform
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # 👈 Needed for push to work
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Run terraform fmt
+        run: terraform fmt -recursive
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "terraform-bot"
+          git config user.email "terraform-bot@users.noreply.github.com"
+
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "chore(terraform): auto format"
+            git push
+          else
+            echo "Nothing to commit"
+          fi

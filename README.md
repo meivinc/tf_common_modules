@@ -23,40 +23,70 @@ Please use Conventional Commit format for your PR title, e.g.:
 
 ---
 
-## Additional Notes
+## 📌 Versioning Strategy (Semantic Versioning + Conventional Commits)
 
-<!-- Optional: any other information -->
-| Type         | Description                                                                                      | Example                                         |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
-| **feat**     | A new feature                                                                                    | `feat(vpc): add support for private subnets`    |
-| **fix**      | A bug fix                                                                                        | `fix(s3): correct bucket policy typo`           |
-| **docs**     | Documentation only changes                                                                       | `docs: update README with usage instructions`   |
-| **style**    | Changes that do not affect meaning of code (formatting, missing semicolons, white-space)         | `style: fix indentation`                        |
-| **refactor** | Code changes that neither fix a bug nor add a feature                                            | `refactor: simplify terraform module variables` |
-| **perf**     | Performance improvements                                                                         | `perf: optimize terraform plan time`            |
-| **test**     | Adding or correcting tests                                                                       | `test: add unit tests for vpc module`           |
-| **chore**    | Changes to the build process or auxiliary tools and libraries                                    | `chore: update terraform provider versions`     |
-| **build**    | Changes that affect the build system or external dependencies (example scopes: npm, gradle, etc) | `build: upgrade node version`                   |
-| **ci**       | Changes to CI configuration files and scripts                                                    | `ci: add GitHub Actions workflow`               |
+This project follows [Semantic Versioning](https://semver.org) and [Conventional Commits](https://www.conventionalcommits.org) to determine how to bump the version number in the `VERSION` file.
+
+| Type       | Emoji | Description                                      | Example                                | Version bump |
+|------------|-------|--------------------------------------------------|----------------------------------------|--------------|
+| **feat**   | ✨     | A new feature                                     | `feat(vpc): add private subnet support` | **MINOR**    |
+| **fix**    | 🐛     | A bug fix                                         | `fix(s3): correct bucket policy`        | **PATCH**    |
+| **perf**   | ⚡     | A performance improvement                         | `perf(route53): reduce plan time`       | **PATCH**    |
+| **refactor** | 🧼  | Code refactoring that doesn't fix a bug or add a feature | `refactor: simplify variable logic`   | **PATCH**    |
+| **docs**   | 📝     | Documentation changes only                        | `docs: update usage section`            | _None_       |
+| **style**  | 🎨     | Code style changes (formatting, no logic change) | `style: fix indentation`                | _None_       |
+| **test**   | ✅     | Adding or updating tests                          | `test: add VPC unit tests`              | _None_       |
+| **chore**  | 🔧     | Maintenance tasks (deps, configs, etc.)          | `chore: update Terraform version`       | _None_       |
+| **ci**     | 🤖     | CI/CD pipeline or workflow changes                | `ci: add format check to PRs`           | _None_       |
+| **build**  | 🏗️     | Build-related changes (e.g. package manager, infra) | `build: bump aws provider version`   | _None_       |
+| **revert** | ⏪     | Reverts a previous commit                         | `revert: undo breaking change`          | Same as original commit |
+| **BREAKING CHANGE** | 💥 | Introduces backward-incompatible changes  | `feat!: drop support for Terraform 0.12` | **MAJOR**    |
+
+---
+
+### 🔺 Which version number to change?
+
+- `MAJOR`: incompatible or breaking API changes (e.g. removing a variable)
+- `MINOR`: backward-compatible new features
+- `PATCH`: bug fixes or small improvements
+
+The `VERSION` file should follow the format:
 
 
-Commit message format
-php-template
-Copy
-Edit
-<type>(<scope>): <subject>
-type — one of the above
+**Examples**:
+- Breaking change → `1.2.3` → `2.0.0`
+- New feature → `1.2.3` → `1.3.0`
+- Bug fix → `1.2.3` → `1.2.4`
 
-scope — optional, indicates the area of the code affected (like a module name)
+## ✅ Version bump required?
 
-subject — short description (use imperative mood, e.g., "fix typo", "add feature")
+| Type         | Needs version bump? | When to bump  | Notes                                                                 |
+|--------------|----------------------|----------------|-----------------------------------------------------------------------|
+| **docs** 📝   | ❌ No                | Never          | Purely documentation (e.g., README, examples)                         |
+| **style** 🎨  | ❌ No                | Never          | Formatting, whitespace, no logic change                               |
+| **test** ✅   | ❌ No                | Never          | Adding/changing tests only                                            |
+| **chore** 🔧  | ❌ Usually No        | Rare           | Only bump if it affects user behavior (e.g., module interface)        |
+| **ci** 🤖     | ❌ Usually No        | Rare           | Bump only if CI affects published outputs (e.g., pre-release format)  |
+| **build** 🏗️  | ❌ Usually No        | Rare           | Bump only if the build process impacts Terraform behavior             |
+| **revert** ⏪ | ✅ Same as original  | Same           | If reverting a `feat`, `fix`, or `BREAKING`, bump accordingly         |
 
-## Examples
-- feat(s3): add lifecycle rules for bucket cleanup
-- fix(vpc): correct security group ingress rule
-- docs: add usage example to README
-- chore: bump terraform version to 1.8.0
 
-## Create a commit with Conventional Commit message 
-git add <files>
-git commit -m "feat(vpc): add support for private subnets"
+## ✅ Conventional Commit Cheatsheet
+
+| Type      | Emoji | Description                        | Example Command                                             |
+|-----------|-------|------------------------------------|-------------------------------------------------------------|
+| feat      | ✨     | New feature                        | `git commit -m "feat(vpc): add private subnet support"`     |
+| fix       | 🐛     | Bug fix                            | `git commit -m "fix(s3): correct bucket ACL"`               |
+| perf      | ⚡     | Performance improvement            | `git commit -m "perf(route53): improve DNS lookup"`         |
+| refactor  | 🧼     | Code refactoring                   | `git commit -m "refactor: simplify variable logic"`         |
+| docs      | 📝     | Documentation only changes         | `git commit -m "docs: update README usage section"`         |
+| style     | 🎨     | Formatting, no code change         | `git commit -m "style(terraform): run terraform fmt"`       |
+| test      | ✅     | Adding or updating tests           | `git commit -m "test: add tests for s3 outputs"`            |
+| chore     | 🔧     | Build/maintenance tasks            | `git commit -m "chore: update terraform version"`           |
+| ci        | 🤖     | CI/CD changes                      | `git commit -m "ci: add check-version workflow"`            |
+| build     | 🏗️     | Build-related changes              | `git commit -m "build(terraform): bump provider to 5.x"`    |
+| revert    | ⏪     | Revert a previous commit           | `git commit -m "revert: undo S3 public ACL removal"`        |
+| feat! / BREAKING | 💥 | Breaking change (MAJOR bump)     | `git commit -m "feat!: remove support for Terraform 0.12"`  |
+
+> 💡 Use `!` after `feat`/`fix` to indicate a breaking change, or add `BREAKING CHANGE:` in the commit body.
+

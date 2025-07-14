@@ -57,3 +57,6 @@ subject — short description (use imperative mood, e.g., "fix typo", "add featu
 - docs: add usage example to README
 - chore: bump terraform version to 1.8.0
 
+## Create a commit with Conventional Commit message 
+git add <files>
+git commit -m "feat(vpc): add support for private subnets"

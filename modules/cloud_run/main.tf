@@ -34,12 +34,12 @@ data "google_project" "project_fetch" {
 }
 
 
-resource "google_project_iam_member" "automation_sa_role_bucket_access" {
-  count   = var.enable_iam_changes ? 1 : 0
-  project = var.project_id
-  role    = "roles/run.invoker"
-  member  = "serviceAccount:service-${data.google_project.project_fetch.number}@gcp-sa-iap.iam.gserviceaccount.com"
-}
+# resource "google_project_iam_member" "automation_sa_role_bucket_access" {
+#   count   = var.enable_iam_changes ? 1 : 0
+#   project = var.project_id
+#   role    = "roles/run.invoker"
+#   member  = "serviceAccount:service-${data.google_project.project_fetch.number}@gcp-sa-iap.iam.gserviceaccount.com"
+# }
 
 
 

@@ -1,3 +1,17 @@
+# 1.0.0 (2025-07-16)
+
+
+### Bug Fixes
+
+* **cloud-run:** update module output ([2b5f303](https://github.com/meivinc/tf_common_modules/commit/2b5f303bff8ec84f29e59a5e0faca64bb8834c2c))
+* **cloud-run:** update variable ([f608d03](https://github.com/meivinc/tf_common_modules/commit/f608d0392aa413bd6fb0cd60cf5c7c0eb29a1867))
+
+
+### Features
+
+* **cloud-run:** implement new variable ([16bd141](https://github.com/meivinc/tf_common_modules/commit/16bd141f04acccf7358f6419666a7952c5208011))
+* **cloud-run:** implement output ([6d8e317](https://github.com/meivinc/tf_common_modules/commit/6d8e317c646f24d43ec3533bc352190e752a1c79))
+
 # [0.1.0](https://github.com/meivinc/tf_common_modules/compare/v0.0.2...v0.1.0) (2025-07-16)
 
 

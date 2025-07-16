@@ -1,3 +1,10 @@
+## [0.0.2](https://github.com/meivinc/tf_common_modules/compare/v0.0.1...v0.0.2) (2025-07-16)
+
+
+### Bug Fixes
+
+* **cloud-run:** update variable ([848d81a](https://github.com/meivinc/tf_common_modules/commit/848d81a0d1c7ccedcd6f905e018476bc25271c11))
+
 # 📝 Changelog
 
 All notable changes to this project will be documented in this file.

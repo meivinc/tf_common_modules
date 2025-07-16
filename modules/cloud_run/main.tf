@@ -6,6 +6,7 @@ resource "google_cloud_run_v2_service" "default" {
   location            = var.default_region
   project             = var.project_id
   iap_enabled         = var.enable_run_iap
+  launch_stage = "BETA"
   template {
     scaling {
       min_instance_count = 0

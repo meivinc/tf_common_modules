@@ -1,0 +1,140 @@
+# module.cloud_run.google_cloud_run_v2_service.default:
+resource "google_cloud_run_v2_service" "default" {
+    client                  = null
+    client_version          = null
+    conditions              = [
+        {
+            execution_reason     = null
+            last_transition_time = "2025-07-16T07:17:38.650510Z"
+            message              = null
+            reason               = null
+            revision_reason      = null
+            severity             = null
+            state                = "CONDITION_SUCCEEDED"
+            type                 = "RoutesReady"
+        },
+        {
+            execution_reason     = null
+            last_transition_time = "2025-07-16T07:17:38.213982Z"
+            message              = null
+            reason               = null
+            revision_reason      = null
+            severity             = null
+            state                = "CONDITION_SUCCEEDED"
+            type                 = "ConfigurationsReady"
+        },
+    ]
+    create_time             = "2025-07-16T07:17:29.515286Z"
+    creator                 = "anonymized-account@mydomain.com"
+    default_uri_disabled    = false
+    delete_time             = null
+    deletion_protection     = false
+    description             = null
+    effective_annotations   = {}
+    effective_labels        = {
+        "goog-terraform-provisioned" = "true"
+    }
+    etag                    = "\"RANDOM_VALUE\""
+    expire_time             = null
+    generation              = "1"
+    iap_enabled             = true
+    id                      = "projects/project-XXXXXXX/locations/europe-west1/services/SERVICE_NAME"
+    ingress                 = "INGRESS_TRAFFIC_ALL"
+    invoker_iam_disabled    = false
+    last_modifier           = "anonymized-account@mydomain.com"
+    latest_created_revision = "projects/project-XXXXXXX/locations/europe-west1/services/SERVICE_NAME/revisions/SERVICE_NAME-00001-xkz"
+    latest_ready_revision   = "projects/project-XXXXXXX/locations/europe-west1/services/SERVICE_NAME/revisions/SERVICE_NAME-00001-xkz"
+    launch_stage            = "BETA"
+    location                = "europe-west1"
+    name                    = "SERVICE_NAME"
+    observed_generation     = "1"
+    project                 = "project-XXXXXXX"
+    reconciling             = false
+    terminal_condition      = [
+        {
+            execution_reason     = null
+            last_transition_time = "2025-07-16T07:17:38.691101Z"
+            message              = null
+            reason               = null
+            revision_reason      = null
+            severity             = null
+            state                = "CONDITION_SUCCEEDED"
+            type                 = "Ready"
+        },
+    ]
+    terraform_labels        = {
+        "goog-terraform-provisioned" = "true"
+    }
+    traffic_statuses        = [
+        {
+            percent  = 100
+            revision = null
+            tag      = null
+            type     = "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST"
+            uri      = null
+        },
+    ]
+    uid                     = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+    update_time             = "2025-07-16T07:17:29.515286Z"
+    uri                     = "https://SERVICE_NAME-RANDOM_ID-ew.a.run.app"
+    urls                    = [
+        "https://SERVICE_NAME-PROJECT_NUMBER.europe-west1.run.app",
+        "https://SERVICE_NAME-RANDOM_ID-ew.a.run.app",
+    ]
+
+    template {
+        encryption_key                   = null
+        execution_environment            = null
+        gpu_zonal_redundancy_disabled    = false
+        max_instance_request_concurrency = 80
+        revision                         = null
+        service_account                  = "PROJECT_NUMBER-compute@developer.gserviceaccount.com"
+        session_affinity                 = false
+        timeout                          = "300s"
+
+        containers {
+            base_image_uri = null
+            build_info     = []
+            image          = "europe-west1-docker.pkg.dev/project-XXXXXXX/hub-applications/DOCKER_IMAGE:latest"
+            name           = null
+            working_dir    = null
+
+            ports {
+                container_port = 80
+                name           = "http1"
+            }
+
+            resources {
+                cpu_idle          = true
+                limits            = {
+                    "cpu"    = "1"
+                    "memory" = "128Mi"
+                }
+                startup_cpu_boost = false
+            }
+
+            startup_probe {
+                failure_threshold     = 1
+                initial_delay_seconds = 0
+                period_seconds        = 240
+                timeout_seconds       = 240
+
+                tcp_socket {
+                    port = 80
+                }
+            }
+        }
+
+        scaling {
+            max_instance_count = 1
+            min_instance_count = 0
+        }
+    }
+
+    traffic {
+        percent  = 100
+        revision = null
+        tag      = null
+        type     = "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST"
+    }
+}

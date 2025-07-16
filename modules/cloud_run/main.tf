@@ -5,7 +5,7 @@ resource "google_cloud_run_v2_service" "default" {
   ingress             = "INGRESS_TRAFFIC_ALL"
   location            = var.default_region
   project             = var.project_id
-  iap_enabled         = true
+  iap_enabled         = var.enable_run_iap
   template {
     scaling {
       min_instance_count = 0
@@ -35,6 +35,7 @@ data "google_project" "project_fetch" {
 
 
 resource "google_project_iam_member" "automation_sa_role_bucket_access" {
+  count   = var.enable_iam_changes ? 1 : 0
   project = var.project_id
   role    = "roles/run.invoker"
   member  = "serviceAccount:service-${data.google_project.project_fetch.number}@gcp-sa-iap.iam.gserviceaccount.com"

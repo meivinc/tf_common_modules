@@ -36,3 +36,15 @@ variable "project_id" {
   default     = null
 }
 
+
+variable "enable_iam_changes" {
+  description = "Should Terraform apply IAM changes?"
+  type        = bool
+  default     = false
+}
+
+variable "enable_run_iap" {
+  description = "Should IAP be enabled on cloud run?"
+  type        = bool
+  default     = false
+}

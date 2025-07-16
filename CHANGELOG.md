@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/meivinc/tf_common_modules/compare/v1.0.0...v1.1.0) (2025-07-16)
+
+
+### Features
+
+* **cloud-run:** implement output correctly ([b7d398d](https://github.com/meivinc/tf_common_modules/commit/b7d398dd8d5313bdbad708207f554e748581991e))
+
 # 1.0.0 (2025-07-16)
 
 

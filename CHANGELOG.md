@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/meivinc/tf_common_modules/compare/v1.1.0...v1.2.0) (2025-08-25)
+
+
+### Features
+
+* **cloud-run:** update new version cloud-run ([b1950ba](https://github.com/meivinc/tf_common_modules/commit/b1950bae20417e0765189f347618e5c25cc37e0c))
+
 # [1.1.0](https://github.com/meivinc/tf_common_modules/compare/v1.0.0...v1.1.0) (2025-07-16)
 
 

@@ -9,15 +9,39 @@ resource "google_cloud_run_v2_service" "default" {
   launch_stage = "BETA"
   template {
     scaling {
-      min_instance_count = 0
-      max_instance_count = 1
+      min_instance_count = var.scaling_config.min_instance_count
+      max_instance_count = var.scaling_config.max_instance_count
     }
     containers {
       image = var.image_path
+      
+      # Regular environment variables
+      dynamic "env" {
+        for_each = var.environment_variables
+        content {
+          name  = env.value.name
+          value = env.value.value
+        }
+      }
+      
+      # Secret environment variables from Secret Manager
+      dynamic "env" {
+        for_each = var.secret_environment_variables
+        content {
+          name = env.value.name
+          value_source {
+            secret_key_ref {
+              secret  = env.value.secret_name
+              version = env.value.version
+            }
+          }
+        }
+      }
+      
       resources {
         limits = {
-          cpu    = "1"
-          memory = "128Mi"
+          cpu    = var.resource_limits.cpu
+          memory = var.resource_limits.memory
         }
         cpu_idle = true
       }
